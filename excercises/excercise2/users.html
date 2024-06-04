@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/pico.min.css" />
+    
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css"
@@ -11,26 +11,29 @@
     <title>Users</title>
   </head>
   <body>
-    <div>
-      <table class="table table-striped" id="usersTable">
-        <thead>
-          <tr>
-            <th>name</th>
-            <th>username</th>
-            <th>email</th>
-            <th>address</th>
-            <th>phone</th>
-            <th>website</th>
-            <th>company</th>
-            <th>catchphrase</th>
-          </tr>
-        </thead>
-        <tbody id="usersTableBody"></tbody>
-      </table>
-    </div>
+    <main class="container">
+        <div>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Address</th>
+                  <th>Phone</th>
+                  <th>Website</th>
+                  <th>Company</th>
+                  <th>Catchphrase</th>
+                </tr>
+              </thead>
+              <tbody id="usersTableBody"></tbody>
+            </table>
+          </div>
+    </main>
+    
 
     <script>
-      const buildTableRow = document.querySelector("#buildTableRow");
+    //   const buildTableRow = document.querySelector("#buildTableRow");
       const usersTable = document.querySelector("#usersTable");
       const usersTableBody = document.querySelector("#usersTableBody");
 
@@ -38,6 +41,7 @@
         .then((response) => response.json())
         .then((users) => {
             console.log(users);
+            loadUsersTable(users);
         });
 
         function loadUsersTable(users) {
@@ -60,7 +64,7 @@
             cell3.innerText = user.email;
 
             let cell4 = row.insertCell();
-            cell4.innerText = user.address;
+            cell4.innerText = `${user.address.street} ${user.address.city} ${user.address.suite} ${user.address.city} ${user.address.zipcode}`;
 
             let cell5 = row.insertCell();
             cell5.innerText = user.phone;
@@ -69,10 +73,10 @@
             cell6.innerText = user.website;
 
             let cell7 = row.insertCell();
-            cell7.innerText = user.company;
+            cell7.innerText = `${user.company.name}`;
 
             let cell8 = row.insertCell();
-            cell8.innerText = user.catchphrase;
+            cell8.innerText = `${user.company.catchPhrase}`;
           }
     </script>
   </body>
