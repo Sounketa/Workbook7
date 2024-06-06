@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css"
+    />
+    <title>Todos</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="/">ToDo</a>
+      </nav>
+    </header>
+    <main>
+      <label for="">ToDo Id</label>
+      <input type="text" id="userId" name="user" value="" title="todoID" />
+      <input type="button" value="Click Here!" />
+
+      <div class="messageText"></div>
+    </main>
+    <script>
+      const loadUserId = document.querySelector("#loadUserId");
+      const userMessageDiv = document.querySelector("#userMessageDiv");
+
+      fetch("https://jsonplaceholder.typicode.com/todos/1")
+        .then((response) => response.json())
+        .then((todos) => {
+          console.log(todos);
+          loadUsersTable(todos);
+        });
+
+      function loadUserId(todos) {
+        userId.innerHTML = "";
+        for (const todo of todos) {
+            
+        }
+      }
+    </script>
+  </body>
+</html>
